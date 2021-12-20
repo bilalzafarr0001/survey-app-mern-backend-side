@@ -66,7 +66,7 @@ exports.listSurveys = async (req, res, next) => {
     const { sortType = "-score" } = req.body;
     const surveys = await Survey.find().sort(sortType).populate({
       path: "user",
-      select: "username",
+      select: "username email",
     });
     return res.status(200).json({ surveys });
   } catch (error) {
@@ -74,4 +74,56 @@ exports.listSurveys = async (req, res, next) => {
   }
 };
 
+exports.findSurvey = async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    console.log(id);
+    const survey = await Survey.findOne({ _id: id }).populate({
+      path: "user",
+      select: "username email gender ",
+    });
+
+    return res.status(200).json({ survey });
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.mernstack = async (req, res, next) => {
+  try {
+    const counter = await Survey.countDocuments({ techstack: "MERN" });
+    console.log("counter", counter);
+    return res.status(200).json({ counter });
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.meanstack = async (req, res, next) => {
+  try {
+    const counter = await Survey.countDocuments({ techstack: "MEAN" });
+    console.log("counter", counter);
+    return res.status(200).json({ counter });
+  } catch (error) {
+    next(error);
+  }
+};
+exports.mvenstack = async (req, res, next) => {
+  try {
+    const counter = await Survey.countDocuments({ techstack: "MVEN" });
+    console.log("counter", counter);
+    return res.status(200).json({ counter });
+  } catch (error) {
+    next(error);
+  }
+};
+exports.sqa = async (req, res, next) => {
+  try {
+    const counter = await Survey.countDocuments({ techstack: "UNIT" });
+    console.log("counter", counter);
+    return res.status(200).json({ counter });
+  } catch (error) {
+    next(error);
+  }
+};
 exports.surveyValidate = [];

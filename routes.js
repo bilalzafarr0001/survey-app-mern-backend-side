@@ -14,6 +14,11 @@ const {
   listSurveys,
   surveyValidate,
   deleteSurvey,
+  findSurvey,
+  mernstack,
+  meanstack,
+  mvenstack,
+  sqa,
 } = require("./controllers/surveys");
 
 const requireAuth = require("./middlewares/requireAuth");
@@ -33,6 +38,11 @@ router.get("/user/:username", find);
 router.post("/surveys", [requireAuth, surveyValidate], createSurvey);
 router.get("/surveys", listSurveys);
 router.delete("/surveys/:id", deleteSurvey);
+router.get("/survey/:id", findSurvey);
+router.get("/surveys/mern", mernstack);
+router.get("/surveys/mean", meanstack);
+router.get("/surveys/mven", mvenstack);
+router.get("/surveys/sqa", sqa);
 
 module.exports = (app) => {
   app.use("/api", router);
