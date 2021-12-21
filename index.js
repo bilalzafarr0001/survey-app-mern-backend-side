@@ -1,7 +1,7 @@
 const app = require("./app");
 const mongoose = require("mongoose");
 const config = require("./config");
-
+const path = require("path");
 // const connect = (url) => {
 //   return mongoose.connect(url, config.db.options);
 // };
@@ -18,6 +18,13 @@ if (require.main === module) {
   // app.listen(8000);
   const port = process.env.PORT || 8000;
 
+  //Adding following code to App.js will enable the system to serve on
+  //Static Ports. This will help heroku to serve pages easily
+
+  app.use(express.static(path.join(__dirname, "./build")));
+  app.get("/*", (req, res) => {
+    res.sendFile(path.join(__dirname, "./build", "index.html"));
+  });
   app.listen(port, function () {
     console.log("Listening on Port 8000");
   });
