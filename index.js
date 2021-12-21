@@ -2,13 +2,20 @@ const app = require("./app");
 const mongoose = require("mongoose");
 const config = require("./config");
 
-const connect = (url) => {
-  return mongoose.connect(url, config.db.options);
-};
+// const connect = (url) => {
+//   return mongoose.connect(url, config.db.options);
+// };
 
 if (require.main === module) {
-  app.listen(config.port);
-  connect(config.db.prod);
+  // connect(config.db.prod);
+  mongoose.connect(
+    "mongodb+srv://muhammadbilal1:5kEiMH3aN1F1ZKbd@cluster0.htpyq.mongodb.net/survey?retryWrites=true&w=majority",
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    }
+  );
+  app.listen(8000);
   mongoose.connection.on("error", (err, res) => {
     console.log("Error to connect db ");
   });
@@ -17,4 +24,4 @@ if (require.main === module) {
   });
 }
 
-module.exports = { connect };
+// module.exports = { connect };

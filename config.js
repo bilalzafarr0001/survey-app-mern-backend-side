@@ -1,8 +1,8 @@
 module.exports = {
   port: 8000,
   db: {
-    prod: "mongodb://localhost/survey",
-    test: "mongodb://localhost/survey-test",
+    prod: "mongodb+srv://muhammadbilal:gSVYcdEmbGoMAKJ4@cluster0.htpyq.mongodb.net/survey?retryWrites=true&w=majority",
+
     options: {
       useNewUrlParser: true,
     },
