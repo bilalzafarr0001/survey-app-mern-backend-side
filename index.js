@@ -16,10 +16,9 @@ if (require.main === module) {
     }
   );
   // app.listen(8000);
-  const port = process.env.PORT || 3000;
-  const host = "0.0.0.0";
+  const port = process.env.PORT || 8000;
 
-  app.listen(port, host, function () {
+  app.listen(port, function () {
     console.log("Listening on Port 8000");
   });
   mongoose.connection.on("error", (err, res) => {
