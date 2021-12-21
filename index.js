@@ -21,7 +21,6 @@ if (require.main === module) {
   //Adding following code to App.js will enable the system to serve on
   //Static Ports. This will help heroku to serve pages easily
 
-  app.use(express.static(path.join(__dirname, "./build")));
   app.get("/*", (req, res) => {
     res.sendFile(path.join(__dirname, "./build", "index.html"));
   });
